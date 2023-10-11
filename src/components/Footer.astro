@@ -1,0 +1,23 @@
+---
+import { Icon } from "astro-icon";
+import Counter from "./Counter";
+---
+
+<footer>
+  <small>
+    Copyright &copy; <span id="copyright"></span> | All rights reserved
+  </small>
+  <Counter client:load/>
+  <small>
+    <a href="/rss.xml">
+      Subscribe to rss <Icon name="tabler:rss" width="20" height="20" />
+    </a>
+  </small>
+</footer>
+
+<script>
+  let copyright = document?.querySelector("#copyright");
+  if (copyright) {
+    copyright.textContent = new Date().getFullYear().toString();
+  }
+</script>
