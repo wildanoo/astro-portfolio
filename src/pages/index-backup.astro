@@ -1,0 +1,57 @@
+---
+import Link from "@components/Link.astro";
+import PostCard from "@components/PostCard.astro";
+import MainLayout from "@layouts/MainLayout.astro";
+
+import { formatBlogPosts } from "src/js/utils";
+
+const allPosts = await Astro.glob("./blog/*.md");
+const formattedPosts: Record<string, any>[] = formatBlogPosts(allPosts, {
+  limit: 3,
+});
+---
+
+<MainLayout title="Home" description="This is home description">
+  <section class="container about" aria-label="About Me">
+    <img
+      src="/images/headshot.png"
+      alt="My Headshot"
+      width="200"
+      height="330"
+    />
+    <div class="content">
+      <h1 class="h1">My Blog test</h1>
+      <p>
+        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quaerat
+        distinctio adipisci expedita perferendis libero obcaecati iusto deserunt
+        debitis id qui. Repellat amet quia magnam nulla molestias expedita
+        deleniti placeat ducimus! Tempora, officia odio sit facilis ducimus
+        consequatur nostrum odit alias! Corrupti voluptas officia non labore,
+        quaerat dolor.
+      </p>
+      <Link
+        href="mailto:wabimantoro@gmail.com"
+        style="secondary"
+        isFilled={false}
+        borderVisible={true}
+        text="👋 About Me"
+      />
+    </div>
+  </section>
+  <section class="container" aria-label="New Blog Posts">
+    <h2 class="h1">New Blog Posts</h2>
+    {
+      formattedPosts.map((post) => (
+        <PostCard frontmatter={post.frontmatter} url={post.url} tagType="h3" />
+      ))
+    }
+  </section>
+</MainLayout>
+
+<style lang="scss">
+  p {
+    span {
+      color: blue;
+    }
+  }
+</style>

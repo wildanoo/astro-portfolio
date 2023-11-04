@@ -1,7 +1,12 @@
 ---
+import ExperienceCard from "@components/ExperienceCard.astro";
 import Link from "@components/Link.astro";
 import PostCard from "@components/PostCard.astro";
 import MainLayout from "@layouts/MainLayout.astro";
+import { Image } from "astro:assets";
+
+import PortfolioCard from "@components/PortfolioCard.jsx";
+import PopupContent from "@components/PopupContent.tsx";
 
 import { formatBlogPosts } from "src/js/utils";
 
@@ -9,49 +14,285 @@ const allPosts = await Astro.glob("./blog/*.md");
 const formattedPosts: Record<string, any>[] = formatBlogPosts(allPosts, {
   limit: 3,
 });
+
+const allPortfolio = await Astro.glob("./portfolio/*.mdx");
+// const portoContent = allPortfolio.map((val) => {
+//   const { Content } = val;
+//   return Content;
+// });
+
+// console.log("portoContent : ", portoContent);
+const skills = [
+  {
+    title: "Javascript",
+    imgUrl: "../images/skills/icon-javascript.svg",
+  },
+  {
+    title: "Typescript",
+    imgUrl: "../images/skills/icon-typescript.svg",
+  },
+  {
+    title: "React",
+    imgUrl: "../images/skills/icon-react.svg",
+  },
+  {
+    title: "Next.js",
+    imgUrl: "../images/skills/icon-nextjs.svg",
+  },
+  {
+    title: "Node.js",
+    imgUrl: "../images/skills/icon-nodejs.svg",
+  },
+  {
+    title: "Express.js",
+    imgUrl: "../images/skills/icon-express.svg",
+  },
+  {
+    title: "Nest.js",
+    imgUrl: "../images/skills/icon-nest.svg",
+  },
+  {
+    title: "Socket.io",
+    imgUrl: "../images/skills/icon-socket.svg",
+  },
+  {
+    title: "PostgreSQL",
+    imgUrl: "../images/skills/icon-postgresql.svg",
+  },
+  {
+    title: "MongoDB",
+    imgUrl: "../images/skills/icon-mongodb.svg",
+  },
+  {
+    title: "Sass/Scss",
+    imgUrl: "../images/skills/icon-sass.svg",
+  },
+  {
+    title: "Storybook",
+    imgUrl: "../images/skills/icon-storybook.svg",
+  },
+  {
+    title: "Git",
+    imgUrl: "../images/skills/icon-git.svg",
+  },
+];
+const experiences = [
+  {
+    companyLogo: "../images/company/ptgue.jpg",
+    companyName: "PT Global Urban Esensial",
+    workingDate: "Sep 2021 - Present",
+    title: "Front-end Developer",
+    jobDesc: [
+      "Develop Homecare PWA layout & API integration",
+      "Develop Dkonsul Web application layout & API integration",
+      "Develop Doctor to Doctor Web application layout & API integration",
+    ],
+  },
+  {
+    companyLogo: "../images/company/meteor.png",
+    companyName: "PT Meteor Inovasi Digital",
+    workingDate: "Oct 2018 - Aug 2021",
+    title: "Fullstack Developer",
+    jobDesc: [
+      "Develop interface portal management system for Meteor platform",
+      "Develop API services for Boost ID application",
+      "Develop API services for Meteor platform",
+    ],
+  },
+  {
+    companyLogo: "../images/company/aitindo.png",
+    companyName: "PT Aiti Prima Indonesia",
+    workingDate: "Dec 2016 - Mar 2018",
+    title: "Web Developer",
+    jobDesc: [
+      "Develop Prestasi Junior Indonesia multiplayer Javascript game using tablet for primary school student, to learn about economy",
+      "Develop Prestasi Junior Indonesia web based single player game and animation",
+      "Develop website campaign abbot family club for abbot customer and reward management",
+    ],
+  },
+  {
+    companyLogo: "../images/company/minda.png",
+    companyName: "PT Minda Perdana",
+    workingDate: "Apr 2016 - Dec 2016",
+    title: "Web Developer",
+    jobDesc: ["Develop E-procurement application for Garuda Indonesia"],
+  },
+  {
+    companyLogo: "../images/company/rusun.png",
+    companyName: "PT Rumah Sunatan Indonesia",
+    workingDate: "Oct 2015 - Apr 2016",
+    title: "SEO Specialist",
+    jobDesc: [
+      "Running SEO campaign for circumcision keyword in indonesia",
+      "Research keyword, optimize for onpage and offpage SEO",
+    ],
+  },
+];
 ---
 
 <MainLayout title="Home" description="This is home description">
-  <section class="container about" aria-label="About Me">
-    <img
-      src="/images/headshot.png"
-      alt="My Headshot"
-      width="200"
-      height="330"
-    />
-    <div class="content">
-      <h1 class="h1">My Blog</h1>
-      <p>
-        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quaerat
-        distinctio adipisci expedita perferendis libero obcaecati iusto deserunt
-        debitis id qui. Repellat amet quia magnam nulla molestias expedita
-        deleniti placeat ducimus! Tempora, officia odio sit facilis ducimus
-        consequatur nostrum odit alias! Corrupti voluptas officia non labore,
-        quaerat dolor.
-      </p>
-      <Link
-        href="mailto:wabimantoro@gmail.com"
-        style="secondary"
-        isFilled={false}
-        borderVisible={true}
-        text="👋 About Me"
-      />
-    </div>
-  </section>
-  <section class="container" aria-label="New Blog Posts">
-    <h2 class="h1">New Blog Posts</h2>
-    {
-      formattedPosts.map((post) => (
-        <PostCard frontmatter={post.frontmatter} url={post.url} tagType="h3" />
-      ))
-    }
-  </section>
-</MainLayout>
-
-<style lang="scss">
-  p {
-    span {
-      color: blue;
-    }
+  <div class="content">
+    <section class="">
+      <div class="bg-[#F0F2F5] py-20 w-full">
+        <div
+          class="flex flex-col gap-[20px] max-w-sm mx-auto justify-center items-center text-center sm:mx-auto sm:max-w-4xl sm:mt-[100px] sm:px-[150px]"
+        >
+          <div>
+            <img
+              src="../images/pp-1.png"
+              alt="Profile image"
+              class="rounded-[50%] w-[200px] h-[200px]"
+            />
+          </div>
+          <div
+            class="font-bold text-[26px] leading-[35px] sm:text-[40px] sm:leading-[40px] text-green-700"
+          >
+            Hello, I'm Wildan,{" "}
+            <div class="inline">software developer based in Indonesia.</div>
+          </div>
+          <div class="text-[20px]">
+            A software developer in Indonesia. I specialize in front-end
+            development and javascript realm.
+          </div>
+          <div class="flex gap-[20px]">
+            <div
+              class="bg-black text-white rounded-full py-3 px-5 cursor-pointer"
+            >
+              GET IN TOUCH
+            </div>
+            <div
+              class="border border-black rounded-full py-3 px-5 cursor-pointer font-semibold"
+            >
+              VIEW ALL WORKS
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        class="flex bg-white px-5 sm:px-[40px] w-full mx-auto justify-center"
+      >
+        <div
+          class="flex flex-col py-[40px] justify-center items-center text-center layout"
+        >
+          <div class="font-bold text-[26px] leading-[35px] sm:text-[35px]">
+            The skills, tools and <div>technologies I am good at:</div>
+          </div>
+          <div
+            class="grid grid-cols-3 mt-7 gap-5 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 xl:grid-cols-7 2xl:grid-cols-8"
+          >
+            {
+              skills.map((skill, i) => (
+                <div class="flex flex-col gap-2 mx-auto">
+                  <div class="">
+                    <img src={skill.imgUrl} alt="Tech" class="h-[65px]" />
+                  </div>
+                  <span class="font-medium">{skill.title}</span>
+                </div>
+              ))
+            }
+          </div>
+        </div>
+      </div>
+      <div class="bg-[#F0F2F5] w-full">
+        <div
+          class="layout px-5 sm:px-[40px] py-[50px] w-full grid grid-cols-1 sm:grid-cols-2 gap-6"
+        >
+          <div class="font-bold text-[35px]">
+            Check out My <div class="text-green-700">Projects.</div>
+          </div>
+          <div class="text-[18px]">
+            Some showcase of my project that use javascript tech stack,
+            front-end and also back-end project that has been done in my
+            previous company.
+          </div>
+          {
+            allPortfolio?.length > 0 &&
+              allPortfolio.map((data, i) => (
+                <PortfolioCard
+                  id={i}
+                  title={data?.frontmatter?.title}
+                  imageUrl={data?.frontmatter?.image?.src}
+                  description={data?.frontmatter?.description}
+                  data={allPortfolio}
+                  client:load
+                />
+              ))
+          }
+        </div>
+        <!-- {data?.projectList?.edges?.length > 3 && (
+            <div className="flex justify-center items-center mb-[50px]">
+               <button
+                  className="px-10 py-2 rounded-lg bg-seagreen text-white"
+                  onClick={() => navigate(`/projects`)}
+               >
+                  VIEW ALL PROJECTS
+               </button>
+            </div>
+         )} -->
+      </div>
+      <div class="w-full">
+        <div
+          class="layout px-5 sm:px-[40px] py-[50px] w-full grid grid-cols-1 gap-10"
+        >
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-10">
+            <div class="font-bold text-[35px]">
+              Look at My <div class="text-green-700">Working Experiences.</div>
+            </div>
+            <div class="text-[18px] sm:px-5">
+              Here is a quick summary of my most recent working experiences,
+              from my past and my latest company
+            </div>
+          </div>
+          {
+            experiences?.map((experience, i) => (
+              <ExperienceCard data={experience} />
+            ))
+          }
+        </div>
+      </div>
+      <div class="bg-[#F0F2F5] w-full">
+        <div
+          class="layout px-5 sm:px-[40px] py-[50px] w-full grid grid-cols-1 sm:grid-cols-2 gap-6"
+        >
+          <div class="font-bold text-[35px]">
+            Check out My <div class="text-green-700">Blog.</div>
+          </div>
+          <div class="text-[18px]">
+            My recent article that I share related to tech that I already use
+            and also for my personal notes.
+          </div>
+          {
+            formattedPosts.map((post, i) => (
+              <PostCard
+                frontmatter={post.frontmatter}
+                url={post.url}
+                tagType="h3"
+              />
+            ))
+          }
+        </div>
+        <!-- {data?.articleList?.edges?.length > 3 && (
+            <div className="flex justify-center items-center mb-[50px]">
+               <button
+                  className="px-4 py-2 rounded-lg bg-mediumseagreen text-white"
+                  onClick={() => navigate(`/articles`)}
+               >
+                  VIEW ALL ARTICLES
+               </button>
+            </div>
+         )} -->
+      </div>
+    </section>
+  </div>
+  {
+    allPortfolio.length > 0 &&
+      allPortfolio.map((val, i) => {
+        const { Content } = val;
+        return (
+          <PopupContent id={i} title={val.frontmatter.title} client:load>
+            <Content slot="content" />
+          </PopupContent>
+        );
+      })
   }
-</style>
+</MainLayout>

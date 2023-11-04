@@ -1,0 +1,27 @@
+---
+const { companyLogo, companyName, workingDate, title, jobDesc } =
+  Astro.props.data;
+---
+
+<div
+  class="grid grid-cols-1 p-5 w-full bg-white sm:grid-cols-4 sm:px-[30px] sm:py-[30px] gap-5 shadow-md rounded-xl"
+>
+  <div class="text-center font-medium flex flex-col justify-center">
+    <img
+      src={companyLogo}
+      alt={"portfolio-1"}
+      class="max-w-[150px] flex m-auto"
+    />
+    <div class="mt-4">{companyName}</div>
+  </div>
+  <div class="text-center sm:hidden">{workingDate}</div>
+  <div class="sm:col-span-2 bg-white">
+    <div class="card-title font-medium">{title}</div>
+    <div class="card-subtitle pl-5 mt-3">
+      <ul class="list-disc flex flex-col gap-2">
+        {jobDesc.map((desc: string) => <li>{desc}</li>)}
+      </ul>
+    </div>
+  </div>
+  <div class="hidden sm:block">{workingDate}</div>
+</div>

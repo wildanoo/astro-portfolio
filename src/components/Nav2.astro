@@ -1,0 +1,35 @@
+---
+import { Icon } from "astro-icon";
+---
+
+<!--  -->
+<nav class="flex px-5 py-3 bg-[#F0F2F5] fixed w-full z-30 left-0">
+  <div class="flex layout justify-between sm:px-[40px]">
+    <h1 class="text-black font-bold">WEABE</h1>
+    <div class="sm:hidden cursor-pointer">
+      <Icon name="mdi:hamburger-menu" width="20" height="20" id="burger-menu" class="block"/>
+      <Icon name="mi:close" width="20" height="20" id="burger-menu-close" class="hidden"/>
+    </div>
+    <div class="text-black font-bold hidden gap-5 sm:flex">
+      <a href="/" class="font-medium text-base">Home</a>
+      <a href="/about" class="font-medium text-base">About</a>
+      <a href="/projects" class="font-medium text-base">Portfolio Projects</a>
+      <a href="/articles" class="font-medium text-base">Articles</a>
+    </div>
+  </div>
+</nav>
+
+<script>
+  const menuButton = document.getElementById("burger-menu");
+  const menuButtonClose = document.getElementById("burger-menu-close");
+
+    // if (menuButtonClose) menuButtonClose.classList.toggle("hidden");
+  menuButton?.addEventListener("click", () => {
+    menuButton.classList.replace('block', 'hidden')
+    menuButtonClose?.classList.replace('hidden', 'block')
+  });
+  menuButtonClose?.addEventListener("click", () => {
+    menuButton?.classList.replace('hidden', 'block')
+    menuButtonClose?.classList.replace('block', 'hidden')
+  });
+</script>

@@ -1,9 +1,11 @@
 ---
 import MainHead from "./MainHead.astro";
 import Footer from "@components/Footer.astro";
-import Nav from "@components/Nav.astro";
+// import Nav from "@components/Nav.astro";
 
 import "../styles/global.css";
+import Nav2 from "@components/Nav2.astro";
+import Navbar from "@components/Navbar.jsx";
 
 interface Props {
   title: string;
@@ -17,15 +19,18 @@ const {
   description = "My musings about the Astro Framework",
   image,
   frontmatter,
-  robots
+  robots,
 } = Astro.props as Props;
 ---
 
 <html lang="en">
-  <MainHead {title} {description} {image} {frontmatter} {robots}/>
+  <MainHead {title} {description} {image} {frontmatter} {robots} />
   <body>
-    <Nav />
-    <main>
+    <div>
+      <!-- <Nav2 /> -->
+      <Navbar title={'WEABE'} client:load/>
+    </div>
+    <main class="w-full">
       <slot> Default Text</slot>
     </main>
     <Footer />
