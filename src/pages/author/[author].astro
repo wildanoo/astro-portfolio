@@ -10,7 +10,6 @@ export async function getStaticPaths() {
     ...new Set(formattedPosts.map((post) => post.frontmatter.author).flat()),
   ];
 
-  console.log('allAuthors : ', allAuthors)
 
   return allAuthors.map((author) => {
     const authorPosts = formattedPosts.filter(

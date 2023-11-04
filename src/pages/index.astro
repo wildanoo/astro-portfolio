@@ -16,12 +16,6 @@ const formattedPosts: Record<string, any>[] = formatBlogPosts(allPosts, {
 });
 
 const allPortfolio = await Astro.glob("./portfolio/*.mdx");
-// const portoContent = allPortfolio.map((val) => {
-//   const { Content } = val;
-//   return Content;
-// });
-
-// console.log("portoContent : ", portoContent);
 const skills = [
   {
     title: "Javascript",

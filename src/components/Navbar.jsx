@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import { GiHamburgerMenu } from "react-icons/gi";
-import { GrClose } from "react-icons/gr";
+import { GiHamburgerMenu } from "react-icons/gi/index";
+import { GrClose } from "react-icons/gr/index";
 
 function Navbar({ title }) {
   const [expand, setExpand] = useState(false);
